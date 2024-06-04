@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Panel</title>
+    <link rel="stylesheet" href="remove.css">
+    <style>
+        /* Custom CSS for table design */
+        .booking-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .booking-table th, .booking-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .booking-table th {
+            background-color: #f2f2f2;
+        }
+        .booking-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .booking-table tr:hover {
+            background-color: #ddd;
+        }
+        .approve-button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer; /* Add cursor pointer */
+        }
+        .decline-button {
+            background-color: #f44336;
+            color: white;
+            border-radius: 3px;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer; /* Add cursor pointer */
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-panel" id="notificationPanel">
+        <!-- Booking content will be added dynamically here -->
+    </div>
+    <script>
+        function fetchBookings() {
+            fetch('fetch_bookings.php')
+                .then(response => response.json())
+                .then(data => {
+                    const notificationPanel = document.getElementById('notificationPanel');
+                    notificationPanel.innerHTML = ''; // Clear previous bookings
+    
+                    // Create a table element
+                    const table = document.createElement('table');
+                    table.classList.add('booking-table');
+    
+                    // Create table header row
+                    const headerRow = document.createElement('tr');
+                    Object.keys(data[0]).forEach(key => {
+                        const th = document.createElement('th');
+                        th.textContent = key.toUpperCase();
+                        headerRow.appendChild(th);
+                    });
+                    table.appendChild(headerRow);
+    
+                    // Populate table with booking data
+                    data.forEach(booking => {
+                        const row = document.createElement('tr');
+                        Object.entries(booking).forEach(([key, value]) => {
+                            const cell = document.createElement('td');
+                            cell.textContent = value;
+                            row.appendChild(cell);
+                        });
+    
+                        // Add approve and decline buttons to each row
+                        const approveButton = document.createElement('button'); // Change from 'a' to 'button'
+                        approveButton.textContent = 'Approve';
+                        approveButton.classList.add('approve-button');
+                        approveButton.addEventListener('click', () => {
+                            // Implement logic to approve booking and redirect to approve_booking.php
+                            console.log('Booking approved:', booking.id);
+                            approveBooking(booking); // Call function to approve booking
+                        });
+                        row.appendChild(approveButton);
+    
+                        const declineButton = document.createElement('button'); // Change from 'a' to 'button'
+                        declineButton.textContent = 'Decline';
+                        declineButton.classList.add('decline-button');
+                        declineButton.addEventListener('click', () => {
+                            // Implement logic to decline booking
+                            console.log('Booking declined:', booking.id);
+                            declineBooking(booking); // Call function to decline booking
+                        });
+                        row.appendChild(declineButton);
+    
+                        table.appendChild(row);
+                    });
+    
+                    // Append table to notification panel
+                    notificationPanel.appendChild(table);
+                })
+                .catch(error => console.error('Error fetching bookings:', error));
+        }
+    
+        function approveBooking(booking) {
+            // Redirect to approve_booking.php after approving
+            window.location.href = 'addstudent.php?booking_id=' + booking.id;
+        }
+    
+        function declineBooking(booking) {
+            console.log('Booking declined:', booking.id);
+            // Implement logic to handle declining booking
+        }
+    
+        fetchBookings(); // Fetch bookings initially
+        setInterval(fetchBookings, 5000); // Fetch bookings periodically
+    </script>
+    
+    
+</body>
+</html>

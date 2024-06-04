@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg'); /* Background image */
+    background-size: cover;
+}
+
+.notification-panel {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #4d0b5c(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adding a shadow for depth */
+}
+
+.notification-panel h2 {
+    margin-bottom: 20px;
+    color: #1877f2; /* Facebook blue */
+    text-align: center; /* Centered heading */
+}
+
+.notification-options {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-tab {
+    margin-bottom: 10px;
+}
+
+.notification-tab a {
+    display: block;
+    padding: 15px;
+    background-color: #4d0b5c; /* White background for links */
+    color: #1877f2; /* Facebook blue */
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Adding a light shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.notification-tab a:hover {
+    background-color: #f0f2f5; /* Light grey background on hover */
+    transform: scale(1.02); /* Slightly larger on hover */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Full width dropdown */
+}
+
+.dropbtn {
+    background-color: #fff; /* White background */
+    color: #1877f2; /* Facebook blue */
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    width: 100%; /* Full width button */
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Adding a light shadow */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+    background-color: #f0f2f5; /* Light grey background on hover */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9; /* Light grey background */
+    min-width: 100%; /* Full width dropdown content */
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Adding a shadow for depth */
+    z-index: 1;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.dropdown-content a {
+    color: #1877f2; /* Facebook blue */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #f0f2f5; /* Light grey border */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f2f5; /* Light grey background on hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

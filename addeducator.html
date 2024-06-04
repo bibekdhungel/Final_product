@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Educator</title>
+    <title>Guardian Day Care - Admin Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4d0b5c; /* Light grey background for the page */
+        }
+        .form-box.register {
+            background-color: #fff; /* White background color */
+            padding: 30px; /* Increased padding for better appearance */
+            border-radius: 15px; /* Rounded corners */
+            max-width: 400px; /* Limiting the width for better readability */
+            margin: 50px auto; /* Centering the form with top margin */
+            position: relative; /* Positioning for the close button */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adding a shadow for depth */
+            color: #000; /* Black text color */
+        }
+        .form-box h2 {
+            text-align: center; /* Centered heading */
+            margin-bottom: 20px; /* Space below the heading */
+            color: #333; /* Dark grey color for the heading */
+        }
+        .close-button {
+            position: absolute; /* Positioning it relative to the form box */
+            top: 10px; /* 10px from the top */
+            right: 10px; /* 10px from the right */
+            background-color: #ff6666; /* Red background */
+            border: none; /* No border */
+            font-size: 20px; /* Font size for the cross */
+            font-weight: bold; /* Bold font */
+            cursor: pointer; /* Pointer cursor on hover */
+            color: #fff; /* White color for the cross */
+            border-radius: 50%; /* Rounded shape */
+            width: 30px; /* Width of the button */
+            height: 30px; /* Height of the button */
+            display: flex; /* Flexbox for centering the content */
+            align-items: center; /* Centering the content vertically */
+            justify-content: center; /* Centering the content horizontally */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+        .close-button:hover {
+            background-color: #ff0000; /* Darker red background on hover */
+            transform: scale(1.1); /* Slightly larger on hover */
+        }
+        .input-box {
+            position: relative; /* Positioning for labels */
+            margin-bottom: 20px; /* Space between input fields */
+        }
+        .input-box input,
+        .input-box select {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside input */
+            background: #f0f0f0; /* Light grey background */
+            border: 1px solid #ccc; /* Light grey border */
+            border-radius: 5px; /* Rounded corners */
+            color: #333; /* Dark grey text color */
+            font-size: 16px; /* Larger font size */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+        .input-box label {
+            position: absolute; /* Positioning over the input field */
+            top: 10px; /* Position from top */
+            left: 10px; /* Position from left */
+            color: #666; /* Medium grey color */
+            pointer-events: none; /* Making label non-interactive */
+            transition: 0.3s; /* Smooth transition */
+        }
+        .input-box input:focus + label,
+        .input-box input:valid + label,
+        .input-box select:focus + label,
+        .input-box select:valid + label {
+            top: -20px; /* Move label up */
+            left: 5px; /* Move label left */
+            color: #333; /* Dark grey color */
+            font-size: 14px; /* Smaller font size */
+            font-weight: bold; /* Bold font */
+        }
+        .bth {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside button */
+            background-color: #4d0b5c; /* Button color */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            color: #fff; /* White text color */
+            font-size: 18px; /* Larger font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+        .bth:hover {
+            background-color: #ff33bb; /* Darker color on hover */
+            transform: scale(1.05); /* Slightly larger on hover */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Guardian Day Care</h1>
+            <h2>Admin Portal</h2>
+        </div>
+    </header>
+    <nav class="navigation">
+        <ul>
+            <li><a href="#">Educator Registration</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-box register">
+        <!-- Close button -->
+        <a href="admin.html" class="close-button">&times;</a>
+        
+        <h2>Educator Registration</h2>
+        <form action="addeducator.php" method="post">
+            <div class="input-box">
+                <input type="text" name="first_name" required>
+                <label>First Name</label>
+            </div>
+            <div class="input-box">
+                <input type="text" name="last_name" required>
+                <label>Last Name</label>
+            </div>
+            <div class="input-box">
+                <input type="text" name="username" required>
+                <label>Username</label> <label></label>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <div class="input-box">
+                <select name="user_type" required>
+                    <option value="" disabled selected></option>
+                    <option value="educator">Educator</option>
+                </select>
+                <label>User Type</label>
+            </div>
+            <button type="submit" class="bth">Register</button>
+        </form>
+    </div>
+</body>
+</html>

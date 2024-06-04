@@ -1,0 +1,322 @@
+/* Styles for parentdashboard.html with logos positioned and translucent touch */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #4d0b5c; /* Purple background */
+    color: #fff; /* White text */
+    position: relative; /* Ensure relative positioning for absolute elements */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; /* Ensure relative positioning for absolute elements */
+    z-index: 1; /* Ensure content appears above background images */
+}
+
+/* Group Logo Styles */
+/* Group Logo Styles */
+.group-logo {
+    position: fixed;
+    bottom: 90%; /* Place the logo at the vertical center */
+    right: 90%; /* Place the logo at the horizontal center */
+    transform: translate(50%, 50%); /* Adjust position to the center */
+    z-index: 0; /* Ensure background position */
+    max-width: 150px; /* Adjust size as needed */
+    opacity: 0.6; /* Translucent effect */
+}
+
+/* Brand Logo Styles */
+.brand-logo {
+    position: fixed;
+    bottom: 10%; /* Place the logo at the vertical center */
+    right: 50%; /* Place the logo at the horizontal center */
+    transform: translate(50%, 50%); /* Adjust position to the center */
+    z-index: 0; /* Ensure background position */
+    max-width: 150px; /* Adjust size as needed */
+    opacity: 0.6; /* Translucent effect */
+}
+
+
+
+
+/* Header Styles */
+.header {
+    background-color: transparent; /* Transparent header */
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.header h2 {
+    margin: 5px 0;
+    font-size: 24px;
+}
+
+/* Navigation Styles */
+.navigation {
+    background-color: #550f70; /* Lighter purple navigation */
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navigation ul li:last-child {
+    margin-right: 0;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navigation ul li a:hover {
+    color: #e0e0e0; /* Light gray on hover */
+}
+
+/* Notification Tab Styles */
+.notification-tab {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #6d0c54; /* Dark purple notification tab */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.notification-tab:hover {
+    background-color: #4d0b5c; /* Slightly lighter purple on hover */
+}
+
+/* Notification Popup Styles */
+.notification-popup {
+    display: none;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.notification-message {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+/* Logout Button Styles */
+.logout-btn {
+    position: fixed;
+    top: 20px; /* Adjust position as needed */
+    right: 20px; /* Adjust position as needed */
+    background-color: #fff; 
+    color: #4d0b5c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #db5598; /* Slightly lighter purple on hover */
+}
+
+
+.contact {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Changed header color */
+    font-size: 24px; /* Increased font size */
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: calc(100% - 40px); /* Adjusted width to account for icon */
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc; /* Added bottom border */
+    outline: none;
+    font-size: 16px;
+    background-color: transparent; /* Transparent background */
+    transition: border-color 0.3s; /* Added transition for border color */
+}
+
+.input-box input:focus,
+.input-box input:valid {
+    border-color: #007bff; /* Changed border color on focus */
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.input-box input:focus + label,
+.input-box input:valid + label {
+    top: -10px; /* Adjusted position for label on focus */
+    font-size: 12px;
+    color: #007bff; /* Changed label color on focus */
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999; /* Icon color */
+}
+
+.desc {
+    position: relative;
+}
+
+.desc input {
+    width: calc(100% - 40px); /* Adjusted width */
+    padding: 10px;
+    border: 2px solid #ccc; /* Added border */
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent; /* Transparent background */
+    transition: border-color 0.3s; /* Added transition for border color */
+}
+
+.desc input:focus {
+    border-color: #007bff; /* Changed border color on focus */
+}
+
+.desc label {
+    position: absolute;
+    top: 10px; /* Adjusted position for label */
+    left: 10px;
+    color: #999;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.desc input:focus + label,
+.desc input:valid + label {
+    top: -15px; /* Adjusted position for label on focus */
+    font-size: 12px;
+    color: #007bff; /* Changed label color on focus */
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container .bth {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container .bth:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow on hover */
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #6d0c54; /* Set your desired background color */
+    text-align: center; /* Align content to the center if needed */
+    padding: 10px; /* Adjust padding as needed */
+  }
+  .desc {
+    
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #4d0b5c;
+    margin: 30px 0;
+}
+
+    .desc label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: #4d0b5c;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+.desc input:focus ~ label,
+.desc input:valid ~ label {
+    top: -5px;
+}
+
+.desc input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #4d0b5c;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+/* Add this CSS to your style.css file */
+
+/* Reset default browser styles for input fields */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+font-weight: normal;
+}

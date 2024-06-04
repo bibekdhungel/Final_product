@@ -1,0 +1,144 @@
+/* Styles for Educator Dashboard */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #4d0b5c; /* Purple background */
+    color: #fff; /* White text */
+}
+
+/* Header Styles */
+.header {
+    background-color: #4d0b5c; /* Dark purple header */
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.header h2 {
+    margin: 5px 0;
+    font-size: 24px;
+}
+
+/* Navigation Styles */
+.navigation {
+    background-color: #550f70; /* Dark purple navigation */
+    padding: 10px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add light shadow */
+}
+
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navigation ul li:last-child {
+    margin-right: 0;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navigation ul li a:hover {
+    color: #e0e0e0; /* Light gray on hover */
+}
+
+/* Dropdown Styles */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #9c459a; /* Light purple on hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #4d0b5c; /* Dark purple on hover */
+}
+
+/* Content Area Styles */
+.content {
+    width: calc(100% - 40px); /* Adjust for padding */
+    margin: 20px;
+    height: calc(95vh - 120px); /* Adjust for header and footer */
+    overflow: auto; /* Enable scrolling if content exceeds height */
+}
+
+iframe {
+    width: 100%;
+    height: 90%;
+    border: none;
+}
+
+/* Logout Button Styles */
+.logout-btn {
+    position: fixed;
+    top: 20px; /* Adjust position as needed */
+    right: 20px; /* Adjust position as needed */
+    background-color: #4d0b5c; /* Dark purple logout button */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #6d0c54; /* Slightly lighter purple on hover */
+}
+/* Group Logo Styles */
+.group-logo {
+    position: fixed;
+    bottom: 90%; /* Place the logo at the vertical center */
+    right: 90%; /* Place the logo at the horizontal center */
+    transform: translate(50%, 50%); /* Adjust position to the center */
+    z-index: 0; /* Ensure background position */
+    max-width: 150px; /* Adjust size as needed */
+    opacity: 0.6; /* Translucent effect */
+}
+
+/* Brand Logo Styles */
+.brand-logo {
+    position: fixed;
+    bottom: 10%; /* Place the logo at the vertical center */
+    right: 50%; /* Place the logo at the horizontal center */
+    transform: translate(50%, 50%); /* Adjust position to the center */
+    z-index: 0; /* Ensure background position */
+    max-width: 150px; /* Adjust size as needed */
+    opacity: 0.6; /* Translucent effect */
+}

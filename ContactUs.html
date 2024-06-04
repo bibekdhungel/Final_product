@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    <link rel="stylesheet" href="parentdashboard.css"> <!-- Link to your main CSS file -->
+    <style>
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Parent Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="ContactUs.html">Contact Us</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="medicalcertificate.html">Upload a Medical Certificate</a></li>
+            <li><a href="booking.html">Book an appointment</a></li>
+            <li><a href="display_activities.php">view activities</a></li>
+        </ul>
+    </nav>
+<div class="contact">
+    <div class="contact-form">
+        <h1>Contact Form</h1>
+        <form action="contactus.php" method="post">
+            <span class="close-btn" onclick="closeContactForm()">&#10006;</span> <!-- Cross sign -->
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="name"></ion-icon>
+                </span>
+                <input type="text" id="name" name="name" required>
+                <label>Name:</label>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="email"></ion-icon>
+                </span>
+                <input type="email" id="email" name="email" required>
+                <label>Email:</label>
+            </div>
+            <div class="desc">
+                <span class="icon">
+                    <ion-icon name="description"></ion-icon>
+                </span>
+                <input type="description" id="desc" name="desc" required>
+                <label>Description:</label>
+            </div>
+            <div class="button-container">
+                <button class="bth">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+
+   
+</div>
+
+<script>
+    function closeContactForm() {
+        window.location.href = "parentdashboard.html";
+    }
+</script>
+</html>

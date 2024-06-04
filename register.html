@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <style>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #4d0b5c;
+            padding: 20px; /* Added padding for better spacing */
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Adjusted max-width for better form visibility */
+            background: #ffffff;
+            border: 2px solid rgba(255, 255, 255, .5);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+            overflow: hidden;
+            padding: 40px; /* Added padding for inner spacing */
+        }
+
+        .form-box h2 {
+            font-size: 2em;
+            color: #4d0b5c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #4d0b5c;
+            margin: 30px 0;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: #4d0b5c;
+            font-weight: 500;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .input-box input:focus ~ label,
+        .input-box input:valid ~ label {
+            top: -5px;
+        }
+
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            color: #4d0b5c;
+            font-weight: 600;
+            padding: 0 35px 0 40px; /* Adjusted padding for better spacing */
+        }
+
+        .input-box .icon {
+            position: absolute;
+            left: 5px;
+            font-size: 1.2em;
+            color: #4d0b5c;
+            line-height: 57px;
+        }
+
+        .bth {
+            width: 100%;
+            height: 45px;
+            background: #4d0b5c;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        .bth:hover {
+            background: #380842;
+        }
+
+        .login-register {
+            font-size: .9em;
+            color: #078aee;
+            text-align: center;
+            font-weight: 500;
+            margin: 25px 0 10px;
+        }
+
+        .login-register p a {
+            color: #078aee;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-register p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Reset default browser styles for input fields */
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            font-weight: normal;
+        }
+        </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-box register">
+            <h2>Registration</h2>
+            <form action="register.php" method="post">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="first_name" required>
+                    <label>First Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="last_name" required>
+                    <label>Last Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="text" name="username" required>
+                    <label>Username</label> 
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="id-card"></ion-icon>
+                    </span>
+                    <input type="text" name="student_id" required>
+                    <label>Student ID</label>
+                </div>
+                <div class="input-box">
+                    <select name="user_type" required>
+                        <option value="" disabled selected>Select User Type</option>
+                        <option value="parent">Parent</option>
+                    </select>
+                </div>
+                <button type="submit" class="bth">Register</button>
+                <p>Already have an account? <a href="login.html" class="login-link">Login</a></p>
+            </form>
+        </div>
+    </div>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

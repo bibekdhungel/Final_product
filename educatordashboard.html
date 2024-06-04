@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Educator Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Educator Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+        
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="attendance.html">Mark Attendance</a></li>
+            <li><a href="educator_calendar.html">Calendar</a></li>
+            <li><a href="activities.html">Upload Activities</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="student.html" >Add New Student</a></li>
+            <li><a href="fetch_medical_certificates.php">See Medical certificate</a></li>
+            <li><a href="attendance.html" >Attendance</a></li>
+
+
+           
+        </ul>
+    </nav>
+
+    <!-- Content Area -->
+    <div id="notificationPanel"></div>
+
+    <div class="content" id="AddNewstudent-content" style="display: none;">
+        <iframe src="student.html" name="AddNewstudent-frame" frameborder="0"></iframe>
+    </div>
+
+    <style>
+        /* Style the parent tab */
+        .parent-tab {
+            position: relative;
+        }
+
+        /* Style the subtabs */
+        .subtabs {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #701c68;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            z-index: 1;
+        }
+
+        /* Show subtabs on hover */
+        .parent-tab:hover .subtabs {
+            display: block;
+        }
+
+        /* Style subtab links */
+        .subtabs li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .subtabs li a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .subtabs li a:hover {
+            background-color: #9c459a;
+        }
+        
+        /* Other styles remain unchanged */
+        .navigation ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+                width: calc(100% - 40px); /* Adjust for padding */
+                margin: 20px;
+                height: calc(95vh - 120px); /* Adjust for header and footer */
+                overflow: auto; /* Enable scrolling if content exceeds height */
+            }
+        
+            iframe {
+                width: 100%;
+                height: 90%;
+                border: none;
+            }
+    </style>
+        
+    <script>
+        // Function to show the Add New Student form
+        function showAddNewStudentForm() {
+            // Hide other content if visible
+            hideAllContent();
+        
+            // Display the Add New Student content
+            var AddNewstudentContent = document.getElementById("AddNewstudent-content");
+            AddNewstudentContent.style.display = "block";
+        }
+        
+        // Function to hide all content
+        function hideAllContent() {
+            var contents = document.querySelectorAll(".content");
+            contents.forEach(function(content) {
+                content.style.display = "none";
+            });
+        }
+        
+        // Close the dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.parent-tab')) {
+                var subtabs = document.querySelectorAll(".subtabs");
+                subtabs.forEach(function(subtab) {
+                    subtab.style.display = "none";
+                });
+            }
+        }
+    </script>
+
+    <script src="fetch_notifications.js"></script> <!-- Link to your JavaScript file for fetching notifications -->
+</body>
+</html>

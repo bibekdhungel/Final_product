@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    <link rel="stylesheet" href="parentdashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Parent Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="ContactUs.html">Contact Us</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="medicalcertificate.html">Upload a Medical Certificate</a></li>
+            <li><a href="booking.html" >Book an appointment</a></li> 
+            <li><a href="display_activities.php">view activities</a></li>
+
+        </ul>
+    </nav>
+
+    <!-- Add the rest of your parent dashboard content here -->
+
+    <script src="script.js"></script> <!-- Link to your main JavaScript file -->
+    <script>
+        // JavaScript to prevent default behavior of link and apply hover effect
+        document.getElementById("bookingLink").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default behavior of link
+            // Apply hover effect (if needed)
+            this.style.color = "blue"; // Example hover effect
+            // Add additional actions if required
+        });
+    </script>
+</body>
+</html>

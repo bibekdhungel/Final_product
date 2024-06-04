@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: contain;
+    background-size: cover;
+    background: #4d0b5c;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    color: #ffffff;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+    .navigation a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: #ffffff;
+        border-radius: 5px;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .5s;
+    }
+
+    .navigation a:hover::after {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+.navigation .bthLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #ffffff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: #ffffff;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.medical .header {
+    color: #8db7d6
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+    .wrapper .form-box.login {
+        transition: transfrom .18s ease;
+        transform: translateX(0);
+    }
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+    
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 50px;
+}
+
+.wrapper.active .form-box.register {
+    transition: transfrom .18s ease;
+    transform: translateX(0);
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #4d0b5c;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #4d0b5c;
+    margin: 30px 0;
+}
+
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: #4d0b5c;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+        top: -5px;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        color: #4d0b5c;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+    }
+
+    .input-box .icon {
+        position: absolute;
+        right: 8px;
+        font-size: 1.2em;
+        color: #162938;
+        line-height: 57px;
+    }
+
+.remember-forgot {
+    font-size: .9em;
+    color: #4d0b5c;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .remember-forgot label input {
+        accent-color: #162938;
+        margin-right: 3px;
+    }
+
+    .remember-forgot a {
+        color: #4d0b5c;
+        text-decoration: none;
+    }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+.bth {
+    width: auto; /* Set width to auto or a specific size depending on your design */
+    height: 45px;
+    background: #4d0b5c;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 500;
+            /* Add padding if necessary to give the button some size */
+    padding: 0 20px; /* Adjust the padding as needed */
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Align button to the right side */
+}
+
+.login-register {
+    font-size: .9em;
+    color: #078aee;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+    .login-register p a {
+        color: #078aee;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .login-register p a:hover {
+            text-decoration: underline;
+        }
+
+.medical .header {
+    color: #078aee;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbtn {
+    position: relative;
+    width: 125%;
+    height: 45px;
+    background: #078aee;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.medform {
+    position: relative;
+    width: 25%;
+    height: 400px;
+    background: white;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease;
+}
+
+    .medform .medical {
+        position: center;
+        color: #4d0b5c;
+    }
+
+    .medform .date {
+        color:#4d0b5c;
+    }
+
+    .medform .picture {
+        color: #4d0b5c;
+    }
+
+.table {
+    margin-top:45px;
+    background:#ffffff;
+    color: #4d0b5c;
+    border-collapse: collapse;
+    position: relative;
+    width: 200%;
+    height: 120%;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.table .name {
+    color: #ffffff;
+    text-align: left;
+    padding: 8px;
+}
+
+
+
+/* Style for the table */
+#attendanceTable {
+    width: 1000px;
+    border-collapse: collapse;
+}
+
+    #attendanceTable th, #attendanceTable td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+/* Style for the checkboxes */
+input[type="checkbox"] {
+    transform: scale(1.5); /* Increase the size of the checkbox */
+    margin-right: 5px;
+}
+
+.submit {
+    width: 100%;
+    height: 45px;
+    background: #078aee;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 500;
+}
+.home{
+    background-color:#ffffff;
+}
+.complete{
+    background-color: #4d0b5c;
+}
+ 
+
+
+.contact {
+    position: relative;
+    width: 50%;
+    height: 465px;
+    background: white;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease; 
+}
+
+.contact-form {
+    flex: 1;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0; /* Set your desired background color */
+    text-align: center; /* Align content to the center if needed */
+    padding: 10px; /* Adjust padding as needed */
+  }
+
+  .desc {
+    
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #4d0b5c;
+        margin: 30px 0;
+    }
+    
+        .desc label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: #4d0b5c;
+            font-weight: 500;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+   .desc input:focus ~ label,
+    .desc input:valid ~ label {
+        top: -5px;
+    }
+
+    .desc input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        color: #4d0b5c;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+    }

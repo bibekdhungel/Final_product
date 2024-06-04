@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Educator Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+        .h2{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Educator Portal</h2>
+        </div>
+        
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="attendance.html">Mark Attendance</a></li>
+            <li><a href="educator_calendar.html">Calendar</a></li>
+            <li><a href="activities.html">Upload Activities</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="student.html" >Add New Student</a></li>
+            <li><a href="fetch_medical_certificates.php">See Medical certificate</a></li>
+
+           
+        </ul>
+    </nav>
+    <div class="container">
+        <span class="close-btn" onclick="closeForm()">&times;</span>
+        <h3>Add New Student</h3>
+        <form class="student-form" action="student.php" method="post">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+            
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Boy</option>
+                <option value="female">Girl</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="parents-username">Parent username:</label>
+            <input type="text" id="parents-username" name="parents-username" required>
+            <label for="emergency-contact">Emergency Contact Name:</label>
+            <input type="text" id="Name" name="Name" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="home-number">Home:</label>
+            <div class="phone-input">
+                <span class="flag-icon flag-icon-au"></span> <!-- Australian Flag -->
+                <input type="tel" id="home-number" name="home-number" pattern="[0-9]{10}" required>
+            </div>
+
+            <label for="mobile-number">Mobile:</label>
+            <div class="phone-input">
+                <span class="flag-icon flag-icon-au"></span> <!-- Australian Flag -->
+                <input type="tel" id="mobile-number" name="mobile-number" pattern="[0-9]{10}" required>
+                
+            </div>
+            <div><label for="Emergency Contact">Emergency Contact Number:</label>
+                <input type="tel" id="Emergency-number" name="Emergency-number" pattern="[0-9]{10}" required></div>
+            
+            <h2 class="h2">Book Days</h2>
+            <label><input type="checkbox" name="book-days[]" value="Monday"> Monday</label>
+            <label><input type="checkbox" name="book-days[]" value="Tuesday"> Tuesday</label>
+            <label><input type="checkbox" name="book-days[]" value="Wednesday"> Wednesday</label>
+            <label><input type="checkbox" name="book-days[]" value="Thursday"> Thursday</label>
+            <label><input type="checkbox" name="book-days[]" value="Friday"> Friday</label>
+
+            <label for="booking_notes">Booking Notes:</label>
+            <textarea id="booking_notes" name="booking_notes" rows="4" cols="50"></textarea>
+            
+            <label for="booking-duration">Booking Duration:</label>
+            <select id="booking-duration" name="booking-duration">
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">1 Year</option>
+            </select>
+            
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+    <script>// script.js
+        function closeForm() {
+            window.location.href = 'educatordashboard.html';
+        }
+        </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #4d0b5c;
+        }
+
+        .container {
+            width: calc(50% - 70px);
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .student-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .student-form input[type="text"],
+        .student-form input[type="date"],
+        .student-form input[type="tel"],
+        .student-form select,
+        .student-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .student-form select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M6 6L0 0h12z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 8px 6px;
+        }
+
+        .student-form textarea {
+            resize: vertical;
+        }
+
+        .student-form button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #5d2a5c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .student-form button[type="submit"]:hover {
+            background-color: #ac52ac;
+        }
+
+        .phone-input {
+            display: flex;
+            align-items: center;
+        }
+
+        .flag-icon {
+            margin-right: 10px;
+        }
+    </style>
+</body>
+</html>

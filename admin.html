@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Admin Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Admin Portal</h2>
+        </div>
+        <div class="logout-container">
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+            <button class="btn" onclick="location.href='search.html'">Search</button>
+
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="addeducator.html">Add Educator</a></li>
+            <li><a href="removeeducator.html">Remove Educator</a></li>
+            <li><a href="addstudent.html">Enroll Student</a></li>
+            <li><a href="removestudent.html">Remove Student</a></li>
+            <li><a href="fetch_contactus.php">Enquiries</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="fetch_activities.php">Children Activities</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Area -->
+    <div id="notificationPanel"></div>
+
+    <style>
+        /* Other styles remain unchanged */
+        .navigation ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+                width: calc(100% - 40px); /* Adjust for padding */
+                margin: 20px;
+                height: calc(95vh - 120px); /* Adjust for header and footer */
+                overflow: auto; /* Enable scrolling if content exceeds height */
+            }
+        
+            iframe {
+                width: 100%;
+                height: 90%;
+                border: none;
+            }
+    </style>
+        
+    <script>
+        // Close the dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.parent-tab')) {
+                var subtabs = document.querySelectorAll(".subtabs");
+                subtabs.forEach(function(subtab) {
+                    subtab.style.display = "none";
+                });
+            }
+        }
+    </script>
+
+    <script src="fetch_notifications.js"></script> <!-- Link to your JavaScript file for fetching notifications -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+</head>
+<body>
+    <h1>Search Page</h1>
+    <form action="search.php" method="get">
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            <option value="students">Students</option>
+            <option value="parents">Parents</option>
+            <option value="educators">Educators</option>
+            <option value="all">All Users</option>
+        </select>
+        <br>
+        <label for="searchQuery">Enter Search Query:</label>
+        <input type="text" id="searchQuery" name="query" required>
+        <br>
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

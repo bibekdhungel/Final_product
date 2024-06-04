@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care</title>
+    <link rel="stylesheet" href="enroll.css">
+</head>
+<body class="home">
+    <div class="content">
+        <h3>Booking Request Form</h3>
+        <form action="booking.php" method="POST">
+            <label for="child_name">Child Name:</label>
+            <input type="text" id="child_name" name="child_name" required><br><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required><br><br>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+
+            <label for="username">Parent's Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="emergency_contact_name">Emergency Contact Name:</label>
+            <input type="text" id="emergency_contact_name" name="emergency_contact_name" required><br><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br><br>
+
+            <label for="home_phone">Home Phone:</label>
+            <input type="tel" id="home_phone" name="home_phone"><br><br>
+
+            <label for="mobile_phone">Mobile Phone:</label>
+            <input type="tel" id="mobile_phone" name="mobile_phone" required><br><br>
+
+            <label for="emergency_contact_number">Emergency Contact Number:</label>
+            <input type="tel" id="emergency_contact_number" name="emergency_contact_number" required><br><br>
+
+            <label for="booking_days">Request Booking Days (Monday to Friday):</label><br>
+            <input type="checkbox" id="monday" name="booking_days[]" value="Monday">
+            <label for="monday">Monday</label><br>
+            <input type="checkbox" id="tuesday" name="booking_days[]" value="Tuesday">
+            <label for="tuesday">Tuesday</label><br>
+            <input type="checkbox" id="wednesday" name="booking_days[]" value="Wednesday">
+            <label for="wednesday">Wednesday</label><br>
+            <input type="checkbox" id="thursday" name="booking_days[]" value="Thursday">
+            <label for="thursday">Thursday</label><br>
+            <input type="checkbox" id="friday" name="booking_days[]" value="Friday">
+            <label for="friday">Friday</label><br><br>
+            <label for="booking_notes">Booking Notes:</label><br>
+            <textarea id="booking_notes" name="booking_notes" rows="4" cols="50"></textarea><br><br>
+
+            <label for="booking-duration">Booking Duration:</label>
+            <select id="booking-duration" name="booking-duration">
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">1 Year</option>
+            </select><br><br>
+
+            <input type="submit" value="Submit Request">
+        </form>
+    </div>
+    <style>
+        /* style.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4d0b5c;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #4d0b5c;
+        }
+
+        label {
+            font-weight: bold;
+            color: #4d0b5c;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4d0b5c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6c1c7b;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+    <script src="script.js"></script>
+</body>
+</html>

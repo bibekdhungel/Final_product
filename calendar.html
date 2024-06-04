@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care</title>
+    <style>
+        nav.navigation ul li a:hover {
+            color: red;
+        }
+
+        #calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .month {
+            width: 30%;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #ffffff;
+            color: #4d0b5c;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        
+
+        #prevMonth, #nextMonth {
+            margin: 5px;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #ffffff;
+            color: #4d0b5c;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #prevMonth:hover, #nextMonth:hover {
+            background-color: #b84bce;
+        }
+
+        /* Background color for dates with events */
+        .has-event {
+            background-color: green;
+            color: white;
+        }
+        .centered-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="parentdashboard.css"> <!-- Link to your main CSS file -->
+</head>
+<body>
+<header class="header">
+    <div class="header-content">
+        <!-- Group Logo -->
+        <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+        <!-- Brand Logo -->
+        
+        <h1>Welcome to Guardian Day Care</h1>
+        <h2>Parent Portal</h2>
+    </div>
+    <div>
+        <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+    </div>
+</header>
+
+<nav class="navigation">
+    <ul>
+        <li><a href="ContactUs.html">Contact Us</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="medicalcertificate.html">Upload a Medical Certificate</a></li>
+        <li><a href="booking.html">Book an appointment</a></li>
+        <li><a href="display_activities.php">view activities</a></li>
+    </ul>
+</nav>
+<div class="centered-container">
+    <h1>Calendar</h1>
+    <label for="year">Select Year:</label>
+    <select id="year"></select></div>
+
+<div id="calendar-container">
+    <div id="calendar"></div>
+    <button id="prevMonth">Prev</button>
+    <button id="nextMonth">Next</button>
+</div>
+
+<script>
+    let currentMonth = new Date().getMonth() + 1; // January is 1
+    let currentYear = new Date().getFullYear();
+
+    function generateCalendar(year, month) {
+        const calendar = document.getElementById("calendar");
+        calendar.innerHTML = '';
+
+        const monthDiv = document.createElement("div");
+        monthDiv.classList.add("month");
+        monthDiv.innerHTML = `<h3>${monthNames[month - 1]}</h3><table><thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody></tbody></table>`;
+        calendar.appendChild(monthDiv);
+
+        const tableBody = monthDiv.querySelector("tbody");
+        const firstDay = new Date(year, month - 1, 1).getDay();
+        const daysInMonth = new Date(year, month, 0).getDate();
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement("tr");
+            for (let j = 0; j < 7; j++) {
+                const cell = document.createElement("td");
+                if ((i === 0 && j < firstDay) || date > daysInMonth) {
+                    cell.innerHTML = "&nbsp;";
+                } else {
+                    cell.textContent = date;
+                    const currentDate = `${year}-${month}-${date}`;
+                    cell.dataset.date = currentDate;
+                    cell.addEventListener("click", handleDateClick);
+
+                    // Check if the date has events
+                    fetch(`fetch_events.php?date=${currentDate}`)
+                    .then(response => response.json())
+                    .then(events => {
+                        if (events.length > 0) {
+                            cell.classList.add("has-event");
+                            cell.dataset.eventDescription = events[0].description;
+                        }
+                    });
+
+                    date++;
+                }
+                row.appendChild(cell);
+            }
+            tableBody.appendChild(row);
+        }
+    }
+
+    function handleDateClick(event) {
+        const selectedDate = event.target.dataset.date;
+        fetchEvents(selectedDate);
+    }
+
+    function fetchEvents(date) {
+        fetch(`fetch_events.php?date=${date}`)
+        .then(response => response.json())
+        .then(events => {
+            // Handle fetched events, e.g., update the calendar UI
+            console.log(events);
+            if (events.length > 0) {
+                const eventDescription = events[0].description;
+                alert(`Event Description: ${eventDescription}`);
+            } else {
+                const result = window.confirm(`No event for ${date}.\n\n`);
+                
+            }
+        });
+    }
+
+    function promptAndHandleEvent(selectedDate) {
+        const eventDescription = window.prompt(`Add Event for ${selectedDate}:`);
+
+        if (eventDescription !== null) {
+            fetch('create_event.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `date=${selectedDate}&description=${encodeURIComponent(eventDescription)}`,
+            })
+            .then(response => response.text())
+            .then(message => {
+                if (message === "Event created successfully!") {
+                    alert(message);
+                    generateCalendar(currentYear, currentMonth); // Update calendar after adding event
+                } else {
+                    alert("Failed to create event. Please try again.");
+                }
+            });
+        }
+    }
+
+    const yearSelector = document.getElementById("year");
+    for (let year = currentYear - 10; year <= currentYear + 10; year++) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelector.appendChild(option);
+    }
+    yearSelector.value = currentYear;
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    yearSelector.addEventListener("change", function () {
+        currentYear = parseInt(yearSelector.value);
+        generateCalendar(currentYear, currentMonth);
+    });
+
+    const prevMonthBtn = document.getElementById("prevMonth");
+    const nextMonthBtn = document.getElementById("nextMonth");
+
+    prevMonthBtn.addEventListener("click", function () {
+        currentMonth--;
+        if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+        }
+        generateCalendar(currentYear, currentMonth);
+    });
+
+    nextMonthBtn.addEventListener("click", function () {
+        currentMonth++;
+        if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+        }
+        generateCalendar(currentYear, currentMonth);
+    });
+
+    generateCalendar(currentYear, currentMonth);
+</script>
+</body>
+</html>

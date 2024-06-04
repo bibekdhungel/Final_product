@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    <link rel="stylesheet" href="parentdashboard.css"> <!-- Link to your main CSS file -->
+    <style>
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Parent Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="ContactUs.html">Contact Us</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="medicalcertificate.html">Upload a Medical Certificate</a></li>
+            <li><a href="booking.html">Book an appointment</a></li>
+            <li><a href="display_activities.php">view activities</a></li>
+        </ul>
+    </nav>
+
+    <div class="medform-container">
+        <span class="close-btn" onclick="closeForm()">&times;</span>
+        <div class="form-header">
+            <h1>Upload Medical Certificate</h1>
+        </div>
+        <div class="medform">
+            <form id="certificateForm" action="medicalcertificate.php" method="post" enctype="multipart/form-data">
+                <label for="student_id">Student ID:</label>
+                <input type="text" id="student_id" name="student_id" placeholder="Student ID" required>
+                <label for="student_name">Student Name:</label>
+                <input type="text" id="student_name" name="student_name" placeholder="Student Name" required>
+                <label for="date">Sick Date:</label>
+                <input type="date" id="date" name="date" required>
+                <br />
+                <span class="pdf-file">
+                    <label for="pdf">Medical Certificate (PDF):</label>
+                    <input type="file" name="pdf" accept=".pdf" required>
+                </span>
+                <br />
+                <br />
+                <button type="submit">Upload Certificate</button>
+            </form>
+        </div>
+    </div>
+    
+    <script> 
+    // script.js
+function closeForm() {
+    window.location.href = 'parentdashboard.html';
+}
+
+    </script>
+    <style>
+        .medform-container {
+            position: relative;
+            width: 40%;
+            background: white;
+            border: 2px solid rgba(255, 255, 255, .5);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+            padding: 20px;
+            margin: 0 auto;
+            margin-top: 10px;
+            overflow-y: auto;
+            max-height: 450px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .medform {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .medform input {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .medform label {
+            display: inline-block;
+            width: 20%;
+            margin-right: 10px;
+            color: #4d0b5c;
+        }
+
+        .medform button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #4d0b5c;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-header {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #4d0b5c;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Educator Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+        .image{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Educator Portal</h2>
+        </div>
+        
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="attendance.html">Mark Attendance</a></li>
+            <li><a href="educator_calendar.html">Calendar</a></li>
+            <li><a href="activities.html">Upload Activities</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="student.html" >Add New Student</a></li>
+            <li><a href="fetch_medical_certificates.php">See Medical certificate</a></li>
+
+           
+        </ul>
+        </nav>
+    
+    </header>
+    <div class="medform">
+        <span class="close-btn" onclick="closeForm()">&times;</span>
+        <h2>Upload Activities</h2>
+        <form action="activities.php" method="post" enctype="multipart/form-data">
+            <div class="image">
+                <label for="image">Upload Image:</label>
+                <input type="file" name="image" id="image" required>
+                
+            </div>
+            <div class="input-box">
+                <input type="date" name="date" id="date">
+                <label for="date">Date:</label>
+            </div>
+            <div class="input-box">
+                <input type="text" name="activity_type" id="activity_type" maxlength="25">
+                <label for="activity_type">Type of Activities:</label>
+            </div>
+            <div class="input-box">
+                <input type="text" name="description" id="description">
+                <label for="description">Description:</label>
+            </div>
+            <input type="submit" class="submit" value="Upload Activity">
+        </form>
+    </div>
+    <script>
+    // script.js
+function closeForm() {
+    window.location.href = 'educatordashboard.html';
+}
+
+</script>
+
+</body>
+</html>
+
+
+<style>
+/* Styles for the children activities form */
+.medform {
+    position: relative;
+    width: 25%; /* Adjust width as needed */
+    height: 500px; /* Adjust height as needed */
+    background: #ccc; /* Same as upload medical certificate form */
+    border: 2px solid #320326; /* Same as upload medical certificate form */
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease;
+    margin: auto; /* Center horizontally */
+}
+
+.medform h2 {
+    font-size: 2em;
+    color: #4d0b5c; /* Same as upload medical certificate form */
+    text-align: center;
+    position: relative; /* Position header within the form box */
+    top: 10px; /* Adjust vertical position */
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #4d0b5c; /* Same as upload medical certificate form */
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: calc(100% - 110px); /* Adjust width to leave space for the label and input box */
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #4d0b5c;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #4d0b5c;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px;
+}
+
+.submit {
+    width: 100%;
+    height: 45px;
+    background: #4d0b5c; /* Same as upload medical certificate form */
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Close button styles */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    color: purple;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll New Student</title>
+    <link rel="stylesheet" href="remove.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enroll New Student</h1>
+        <form class="student-form" action="addstudent.php" method="post">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+            
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" required>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Boy</option>
+                <option value="female">Girl</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="parents-username">Parent username:</label>
+            <input type="text" id="parent-username" name="parents-username" required>
+
+            <label for="emergency-contact">Emergency Contact Name:</label>
+            <input type="text" id="Name" name="Name" required>
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="home-number">Home:</label>
+            <div class="phone-input">
+                <span class="flag-icon flag-icon-au"></span> <!-- Australian Flag -->
+                <input type="tel" id="home-number" name="home-number" pattern="[0-9]{10}" placeholder="" required>
+            </div>
+
+            <label for="mobile-number">Mobile:</label>
+            <div class="phone-input">
+                <span class="flag-icon flag-icon-au"></span> <!-- Australian Flag -->
+                <input type="tel" id="mobile-number" name="mobile-number" pattern="[0-9]{10}" placeholder="" required>
+                <label for="Emergency Contact">Emergency Contact Number:</label>
+                <input type="tel" id="Emergency-number" name="Emergency-number" pattern="[0-9]{10}" placeholder="" required>
+            </div>
+            <h2>Book Days</h2>
+            <label><input type="checkbox" name="book-days[]" value="Monday"> Monday</label>
+            <label><input type="checkbox" name="book-days[]" value="Tuesday"> Tuesday</label>
+            <label><input type="checkbox" name="book-days[]" value="Wednesday"> Wednesday</label>
+            <label><input type="checkbox" name="book-days[]" value="Thursday"> Thursday</label>
+            <label><input type="checkbox" name="book-days[]" value="Friday"> Friday</label>
+            <label for="booking_notes">Booking Notes:</label><br>
+            <textarea id="booking_notes" name="booking_notes" rows="4" cols="50"></textarea><br><br>
+
+            <label for="booking-duration">Booking Duration:</label>
+            <select id="booking-duration" name="booking-duration">
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">1 Year</option>
+            </select>
+            
+            
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #8e598252;
+}
+
+.container {
+    width: calc(50% - 10px);
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.student-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.student-form input[type="text"],
+.student-form input[type="date"],
+.student-form input[type="tel"],
+.student-form select,
+.student-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.student-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6"><path d="M6 6L0 0h12z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 8px 6px;
+}
+
+.student-form textarea {
+    resize: vertical;
+    background-size: 8px 6px;
+}
+
+.student-form label input[type="checkbox"] {
+    pointer-events: "checkbox";
+}
+
+.student-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    cursor: pointer;
+}
+
+.student-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+.student-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #4d0b5c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+.student-form button[type="submit"]:hover {
+    background-color: #4d0b5c;
+}
+
+    </style>
+    
+</body>
+</html>

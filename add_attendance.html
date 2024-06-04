@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Educator Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-container input[type="date"],
+        .form-container button {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .notification {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+        }
+
+        tr {
+            background-color: #77168d;
+        }
+    </style>
+     <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Educator Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="educator_calendar.html">Calendar</a></li>
+            <li><a href="activities.html">Upload Activities</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="student.html">Add New Student</a></li>
+            <li><a href="viewmedcert.html">See Medical certificate</a></li>
+            <li><a href="attendance.html">Attendance</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Attendance</h2>
+        <form id="add-attendance-form">
+            <label for="attendance-date">Select Date:</label>
+            <input type="date" id="attendance-date" name="attendance-date" required>
+            <button type="submit">Load Students</button>
+        </form>
+        <div id="student-list">
+            <!-- Student list will be loaded here -->
+        </div>
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script>
+        document.getElementById('add-attendance-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var selectedDate = document.getElementById('attendance-date').value;
+            loadStudents(selectedDate);
+        });
+
+        function loadStudents(date) {
+            fetch('load_students.php?date=' + date)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('student-list').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function submitAttendance(date) {
+            var attendanceData = [];
+            document.querySelectorAll('.attendance-checkbox').forEach(function(checkbox) {
+                attendanceData.push({
+                    student_id: checkbox.getAttribute('data-student-id'),
+                    is_present: checkbox.checked ? 1 : 0
+                });
+            });
+
+            fetch('insert_attendance.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ date: date, attendance: attendanceData }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                var notification = document.getElementById('notification');
+                notification.innerText = data;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

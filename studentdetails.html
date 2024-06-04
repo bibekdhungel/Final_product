@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        // Function to fetch student details from PHP script and populate the table
+        function fetchStudentDetails() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Parse JSON response
+                    var studentData = JSON.parse(this.responseText);
+
+                    // Get table body
+                    var tbody = document.querySelector('#student-table tbody');
+
+                    // Clear existing rows
+                    tbody.innerHTML = '';
+
+                    // Loop through student data and populate table rows
+                    studentData.forEach(function(student) {
+                        var row = '<tr>' +
+                                    '<td>' + student.student_id + '</td>' +
+                                    '<td>' + student.first_name + '</td>' +
+                                    '<td>' + student.last_name + '</td>' +
+                                    '<td>' + student.date_of_birth + '</td>' +
+                                    '<td>' + student.gender + '</td>' +
+                                    '<td>' + student.parent_id + '</td>' +
+                                    '<td>' + student.emergency_contact_name + '</td>' +
+                                    '<td>' + student.address + '</td>' +
+                                    '<td>' + student.home_phone + '</td>' +
+                                    '<td>' + student.mobile_phone + '</td>' +
+                                    '<td>' + student.emergency_contact_number + '</td>' +
+                                    '<td>' + student.booking_days + '</td>' +
+                                    '<td>' + student.booking_notes + '</td>' +
+                                    '<td>' + student.booking_duration + '</td>' +
+                                  '</tr>';
+                        tbody.innerHTML += row;
+                    });
+                }
+            };
+            xhttp.open("GET", "studentdetails.php", true);
+            xhttp.send();
+        }
+
+        // Call the fetchStudentDetails function when the page loads
+        window.onload = fetchStudentDetails;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Details</h1>
+        <table id="student-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Parent ID</th>
+                    <th>Emergency Contact Name</th>
+                    <th>Address</th>
+                    <th>Home Phone</th>
+                    <th>Mobile Phone</th>
+                    <th>Emergency Contact Number</th>
+                    <th>Booking Days</th>
+                    <th>Booking Notes</th>
+                    <th>Booking Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated dynamically by the JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

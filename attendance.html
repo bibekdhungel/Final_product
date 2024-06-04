@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guardian Day Care - Educator Dashboard</title>
+    <link rel="stylesheet" href="educatordashboard.css"> <!-- Link to your main CSS file -->
+    <link rel="stylesheet" href="notification.css"> <!-- Link to notification CSS file -->
+    <style>
+        /* Add your hover effect style here */
+        nav.navigation ul li a:hover {
+            /* Example hover effect */
+            color: red;
+        }
+        .date-selection {
+            position: absolute;
+            top: 190px; /* Adjust this value based on your navigation bar's height */
+            left: 20px; /* Adjust this value to position it from the left */
+            display: flex;
+            align-items: center;
+            font-size: 1.2em; /* Increase font size */
+        }
+
+        .date-selection label {
+            margin-right: 10px;
+            color: #fff; /* Change label color */
+        }
+
+        .date-selection input[type="date"],
+        .date-selection button {
+            padding: 10px; /* Increase padding */
+            border: 2px solid #ccc; /* Add border */
+            border-radius: 5px; /* Add border radius */
+            transition: border-color 0.3s ease; /* Add transition effect */
+        }
+
+        .date-selection input[type="date"]:focus,
+        .date-selection button:hover {
+            border-color: #4CAF50; /* Change border color on focus or hover */
+        }
+        .submission button{
+            padding: 15px; /* Increase padding */
+            border: 2px solid #ccc; /* Add border */
+            border-radius: 5px; /* Add border radius */
+            transition: border-color 0.3s ease; /* Add transition effect */
+            position: absolute;
+            top: 600px; /* Adjust this value based on your navigation bar's height */
+            left: 1000px; /* Adjust this value to position it from the left */
+            
+         }
+         .submission button:hover {
+            border-color: #4CAF50; /* Change border color on focus or hover */
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            animation: fadeOut 8s forwards;
+            cursor: pointer;
+            z-index: 9999; /* Ensure notification appears above other elements */
+        }
+
+        @keyframes fadeOut {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 70px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #be30f1;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <!-- Group Logo -->
+            <img src="guardiandaycare.png" alt="Guardian Day Care" class="group-logo">
+            <!-- Brand Logo -->
+            <img src="brandtech.png" alt="BrandTech" class="brand-logo">
+            <h1>Welcome to Guardian Day Care</h1>
+            <h2>Educator Portal</h2>
+        </div>
+        <div>
+            <button class="logout-btn" onclick="location.href='logout.php'">Logout</button>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <ul>
+            <li><a href="educator_calendar.html">Calendar</a></li>
+            <li><a href="activities.html">Upload Activities</a></li>
+            <li><a href="notificationpanel.html">Notifications</a></li>
+            <li><a href="student.html">Add New Student</a></li>
+            <li><a href="fetch_medical_certificates.php">See Medical certificate</a></li>
+            <li><a href="attendance.html">Attendance</a></li>
+        </ul>
+    </nav>
+
+    <div class="date-selection">
+        <label for="attendance-date">Select Date:</label>
+        <input type="date" id="attendance-date" name="attendance-date">
+        <button id="submit-date-btn">Show Attendance</button>
+    </div>
+
+    <div>
+        <table id="attendanceTable">
+            <!-- Content will be loaded dynamically here -->
+        </table>
+    </div>
+
+    <div class="submission">
+        <button id="submit-attendance-btn" class="">Submit</button>
+    </div>
+
+    <div id="notification"></div>
+
+    <script>
+        document.getElementById("submit-date-btn").addEventListener("click", function () {
+            var selectedDate = document.getElementById('attendance-date').value;
+            fetchAttendance(selectedDate);
+        });
+
+        document.getElementById("submit-attendance-btn").addEventListener("click", function () {
+            submitAttendanceChanges();
+        });
+
+        document.addEventListener('change', function(event) {
+            if (event.target.classList.contains('attendance-checkbox')) {
+                event.target.setAttribute('data-changed', true);
+            }
+        });
+
+        function fetchAttendance(selectedDate) {
+            fetch('get_attendance_data.php?date=' + selectedDate)
+                .then(response => response.text())
+                .then(data => {
+                    if (data.trim() === "No attendance record found for the selected date.") {
+                        var confirmAddAttendance = window.confirm("No attendance record found for the selected date. Would you like to add an attendance record?");
+                        if (confirmAddAttendance) {
+                            window.location.href = "add_attendance.html?date=" + selectedDate;
+                        }
+                    } else {
+                        document.getElementById('attendanceTable').innerHTML = data;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function submitAttendanceChanges() {
+            var changedCheckboxes = document.querySelectorAll('.attendance-checkbox[data-changed="true"]');
+            if (changedCheckboxes.length === 0) {
+                showNotification("No changes to submit");
+                return;
+            }
+            changedCheckboxes.forEach(function(checkbox) {
+                var sid = checkbox.getAttribute('data-sid');
+                var date = document.getElementById('attendance-date').value;
+                var isPresent = checkbox.checked ? 1 : 0;
+                updateAttendance(sid, date, isPresent);
+                checkbox.removeAttribute('data-changed');
+            });
+        }
+
+        function updateAttendance(sid, date, isPresent) {
+            fetch('update_attendance.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'sid=' + sid + '&date=' + date + '&is_present=' + isPresent,
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                showNotification(data);
+                fetchAttendance(date); // Update attendance table after submitting changes
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function showNotification(message) {
+            var notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerText = message;
+
+            // Check if a similar notification already exists
+            var existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                // Remove the existing notification
+                existingNotification.remove();
+            }
+
+            document.getElementById('notification').appendChild(notification);
+
+            // Add click event to hide the notification on click
+            notification.addEventListener('click', function() {
+                notification.style.display = 'none';
+            });
+
+            // Hide notification after 10 seconds
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 20000);
+        }
+    </script>
+</body>
+</html>

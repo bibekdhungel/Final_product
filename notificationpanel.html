@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #4d0b5c; /* Background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .notification-panel {
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Adding a shadow for depth */
+            text-align: center; /* Centering content */
+        }
+        .notification-panel h2 {
+            margin-bottom: 20px;
+            color: #4d0b5c; /* Highlight color */
+        }
+        .notification-dropdown {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside dropdown */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #ccc; /* Light grey border */
+            color: #4d0b5c; /* Highlight color */
+            background-color: #fff; /* White background */
+            font-size: 16px; /* Larger font size */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Adding a light shadow */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: border-color 0.3s ease; /* Smooth transition */
+        }
+        .notification-dropdown:focus {
+            border-color: #4d0b5c; /* Highlight border color on focus */
+            outline: none; /* Remove default outline */
+        }
+        .notification-tab {
+            margin-bottom: 10px;
+        }
+        .notification-tab a {
+            display: block;
+            padding: 15px;
+            background-color: #fff; /* White background for links */
+            color: #4d0b5c; /* Highlight color */
+            text-decoration: none;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Adding a light shadow */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        }
+        .notification-tab a:hover {
+            background-color: #f0f2f5; /* Light grey background on hover */
+            transform: scale(1.02); /* Slightly larger on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-panel">
+        <h2>Notification Home</h2>
+        <select class="notification-dropdown" onchange="navigate()">
+            <option value="messages">View Messages</option>
+            <option value="booking">View Bookings</option>
+        </select>
+        <!-- Notification content will be added dynamically here -->
+    </div>
+
+    <script>
+        function navigate() {
+            var dropdown = document.querySelector('.notification-dropdown');
+            var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+            if (selectedValue === 'booking') {
+                window.location.href = 'bookingnotification.html';
+            } else if (selectedValue === 'messages') {
+                window.location.href = 'messages.html';
+            }
+        }
+    </script>
+</body>
+</html>

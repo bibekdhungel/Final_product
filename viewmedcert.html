@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Medical Certificates</title>
+    <link rel="stylesheet" href="educatordashboard.css">
+    <style>
+        .table-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2{
+            color:#851d6d
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #851d6d;
+        }
+
+        tr:nth-child(even) {
+            background-color: #851d6d;
+        }
+
+        img.certificate-img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h2>Medical Certificates</h2>
+        <table id="medical-certificates-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Sick Date</th>
+                    <th>Certificate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_medcert_data.php')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Debug: Log response data to console
+                const tableBody = document.querySelector('#medical-certificates-table tbody');
+                tableBody.innerHTML = ''; // Clear existing rows
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${row.student_id}</td>
+                        <td>${row.student_name}</td>
+                        <td>${row.sick_date}</td>
+                        <td><img src="${row.certificate_file_path}" class="certificate-img" alt="Certificate Image"></td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        });
+    </script>
+</body>
+</html>
